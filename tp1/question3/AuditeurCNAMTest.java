@@ -122,4 +122,22 @@ public class AuditeurCNAMTest extends junit.framework.TestCase {
         assertEquals(" nom avec accent (é devient e) ? ", "chloe_c",
             auditeur1.login());
     }
+    
+    public void test_login_avecslash(){
+        question3.AuditeurCNAM auditeur1 = new question3.AuditeurCNAM("/hwq224121",
+                "/", "12345");
+        assertEquals("Mme /hwq224121 / ", "/hwq224121", auditeur1.nom());
+        assertEquals("Mme /hwq224121 / ", "/", auditeur1.prenom());
+        assertEquals(" nom avec slash et nombres ? ", "_hwq22__",
+            auditeur1.login());
+        }
+       
+    public void test_login_avectouslettresspeciaux(){
+        question3.AuditeurCNAM auditeur1 = new question3.AuditeurCNAM("/-/<>-_",
+                "/", "12345");
+        assertEquals("Mme /-/<>-_ / ", "/-/<>-_", auditeur1.nom());
+        assertEquals("Mme /-/<>-_ / ", "/", auditeur1.prenom());
+        assertEquals(" nom avec tous les lettre speciaux ", "________",
+            auditeur1.login());
+        }
 }

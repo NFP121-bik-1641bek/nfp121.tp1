@@ -1,10 +1,11 @@
 package question3;
 
+
 /**
  * NFP121 TpIntroduction, usage de BlueJ et du "Submitter".
  * 
- * @version septembre 2009
- * @author à compléter
+ * @version mai 2020
+ * @author Remy Zakarian
  * @see java.lang.String, java.lang.Math
  */
 public class AuditeurCNAM {
@@ -14,6 +15,7 @@ public class AuditeurCNAM {
     private String prenom;
     /** l'attribut matricule de chaque auditeur. */
     private String matricule;
+    private String firstpart;
 
     /**
      * "Création", le constructeur d'un auditeur avec son nom, son prénom et son
@@ -45,7 +47,21 @@ public class AuditeurCNAM {
      *         homonymes...
      */
     public String login() {
-        return "";// à compléter
+        if(this.nom.length() < 6){
+            firstpart = this.nom;
+        }else if(this.nom.length() >= 6){
+            firstpart = this.nom.substring(0,6);
+        }
+        String secondpart = this.prenom.substring(0,1);
+        String resultstring = firstpart.toLowerCase() + "_" + secondpart.toLowerCase();
+        resultstring = resultstring.replaceAll("[èéêë]","e");
+        resultstring = resultstring.replaceAll("[ûù]","u");
+        resultstring = resultstring.replaceAll("[ïî]","i");
+        resultstring = resultstring.replaceAll("[àâ]","a");
+        resultstring = resultstring.replaceAll("Ô","o");
+        return resultstring.replaceAll("[^a-z0-9_]","_");
+        
+        
     }
 
     /**
@@ -54,7 +70,7 @@ public class AuditeurCNAM {
      * @return son nom
      */
     public String nom() {
-        return null;// à compléter
+        return this.nom;// à compléter
     }
 
     /**
@@ -63,7 +79,7 @@ public class AuditeurCNAM {
      * @return son prénom
      */
     public String prenom() {
-        return null;// à compléter
+        return this.prenom;// à compléter
     }
 
     /**
@@ -72,7 +88,7 @@ public class AuditeurCNAM {
      * @return son matricule
      */
     public String matricule() {
-        return null;// à compléter
+        return this.matricule;// à compléter
     }
 
     /**
